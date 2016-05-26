@@ -1,0 +1,132 @@
+﻿<Page
+    x:Class="BlackHole.UI.Views.GameView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlackHole.UI.Views"
+    xmlns:viewModels="using:BlackHole.UI.ViewModels"
+    xmlns:controls="using:BlackHole.UI.Views.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <viewModels:GameViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding game.round}"/>
+                <TextBlock Text="{Binding game.turn}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <controls:PlayerPiece Value="1" Player="1"/>
+                <controls:PlayerPiece Value="1" Player="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <controls:PlayerPiece Value="2" Player="1"/>
+                <controls:PlayerPiece Value="2" Player="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <controls:PlayerPiece Value="3" Player="1"/>
+                <controls:PlayerPiece Value="3" Player="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <controls:PlayerPiece Value="4" Player="1"/>
+                <controls:PlayerPiece Value="4" Player="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <controls:PlayerPiece Value="5" Player="1"/>
+                <controls:PlayerPiece Value="5" Player="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <controls:PlayerPiece Value="6" Player="1"/>
+                <controls:PlayerPiece Value="6" Player="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <controls:PlayerPiece Value="7" Player="1"/>
+                <controls:PlayerPiece Value="7" Player="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <controls:PlayerPiece Value="8" Player="1"/>
+                <controls:PlayerPiece Value="8" Player="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <controls:PlayerPiece Value="9" Player="1"/>
+                <controls:PlayerPiece Value="9" Player="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <controls:PlayerPiece Value="10" Player="1"/>
+                <controls:PlayerPiece Value="10" Player="2"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <controls:BoardSpace SpaceId="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" 
+                                 ContainingPiece="{Binding game.board.spaces[0].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="2" Grid.Row="1" Grid.Column="2" 
+                                 ContainingPiece="{Binding game.board.spaces[1].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="3" Grid.Row="1" Grid.Column="3" 
+                                 ContainingPiece="{Binding game.board.spaces[2].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="4" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" 
+                                 ContainingPiece="{Binding game.board.spaces[3].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" 
+                                 ContainingPiece="{Binding game.board.spaces[4].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="6" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" 
+                                 ContainingPiece="{Binding game.board.spaces[5].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="7" Grid.Row="3" Grid.Column="1" 
+                                 ContainingPiece="{Binding game.board.spaces[6].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="8" Grid.Row="3" Grid.Column="2" 
+                                 ContainingPiece="{Binding game.board.spaces[7].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="9" Grid.Row="3" Grid.Column="3" 
+                                 ContainingPiece="{Binding game.board.spaces[8].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="10" Grid.Row="3" Grid.Column="4" 
+                                 ContainingPiece="{Binding game.board.spaces[9].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="11" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" 
+                                 ContainingPiece="{Binding game.board.spaces[10].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="12" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
+                                 ContainingPiece="{Binding game.board.spaces[11].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="13" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" 
+                                 ContainingPiece="{Binding game.board.spaces[12].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="14" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" 
+                                 ContainingPiece="{Binding game.board.spaces[13].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="15" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" 
+                                 ContainingPiece="{Binding game.board.spaces[14].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="16" Grid.Row="5" Grid.Column="0" 
+                                 ContainingPiece="{Binding game.board.spaces[15].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="17" Grid.Row="5" Grid.Column="1" 
+                                 ContainingPiece="{Binding game.board.spaces[16].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="18" Grid.Row="5" Grid.Column="2" 
+                                 ContainingPiece="{Binding game.board.spaces[17].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="19" Grid.Row="5" Grid.Column="3" 
+                                 ContainingPiece="{Binding game.board.spaces[18].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="20" Grid.Row="5" Grid.Column="4" 
+                                 ContainingPiece="{Binding game.board.spaces[19].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace SpaceId="21" Grid.Row="5" Grid.Column="5" 
+                                 ContainingPiece="{Binding game.board.spaces[20].containingPiece, Mode=TwoWay}"/>
+        </Grid>
+    </Grid>
+</Page> 
