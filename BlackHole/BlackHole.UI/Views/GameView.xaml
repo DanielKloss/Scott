@@ -15,26 +15,12 @@
     </Page.DataContext>
 
     <Grid Background="Transparent" AllowDrop="False">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="8*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding game.round}"/>
-                <TextBlock Text="{Binding game.turn}"/>
-            </StackPanel>
-            <ListView ItemsSource="{Binding game.pieces}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
-
-        <Grid Grid.Column="1">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -95,6 +81,22 @@
                                  ContainingPiece="{Binding game.board.spaces[19].containingPiece, Mode=TwoWay}"/>
             <controls:BoardSpace SpaceId="21" Grid.Row="5" Grid.Column="5" 
                                  ContainingPiece="{Binding game.board.spaces[20].containingPiece, Mode=TwoWay}"/>
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+            <ListView ItemsSource="{Binding game.pieces}" Margin="0,0,0,4" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
 </Page> 

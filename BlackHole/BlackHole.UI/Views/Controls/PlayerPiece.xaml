@@ -12,7 +12,7 @@
     DropCompleted="control_DropCompleted">
 
     <Grid>
-        <Ellipse Height="20" Width="20" Fill="{Binding Player, ElementName=control, Converter={StaticResource playerColourConverter}}"/>
-        <TextBlock Text="{Binding Value, ElementName=control}" HorizontalAlignment="Center" TextAlignment="Center"/>
+        <Ellipse Height="35" Width="35" Fill="{Binding Player, ElementName=control, Converter={StaticResource playerColourConverter}}"/>
+        <TextBlock Text="{Binding Value, ElementName=control}" Style="{StaticResource PieceTextStyle}"/>
     </Grid>
 </UserControl>

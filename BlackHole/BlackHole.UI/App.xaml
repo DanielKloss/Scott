@@ -8,6 +8,15 @@
 
     <Application.Resources>
         <helpers:PlayerColourConverter x:Key="playerColourConverter"/>
+
+        <Style x:Key="PieceTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Audiowide-Regular.ttf#Audiowide"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
     </Application.Resources>
     
 </Application>
