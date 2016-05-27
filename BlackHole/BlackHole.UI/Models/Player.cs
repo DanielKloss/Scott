@@ -1,4 +1,5 @@
 using BlackHole.UI.Helpers;
+using Windows.UI;
 
 namespace BlackHole.UI.Models
 {
@@ -11,7 +12,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _id = value;
-                RaisePropertyChanged("id");
+                RaisePropertyChanged(nameof(id));
             }
         }
 
@@ -22,7 +23,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _name = value;
-                RaisePropertyChanged("name");
+                RaisePropertyChanged(nameof(name));
             }
         }
 
@@ -33,9 +34,21 @@ namespace BlackHole.UI.Models
             set
             {
                 _score = value;
-                RaisePropertyChanged("score");
+                RaisePropertyChanged(nameof(score));
             }
         }
+
+        private Color _colour;
+        public Color colour
+        {
+            get { return _colour; }
+            set
+            {
+                _colour = value;
+                RaisePropertyChanged(nameof(colour));
+            }
+        }
+
 
         public Player(int Id, string Name)
         {

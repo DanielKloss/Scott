@@ -13,7 +13,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _spaces = value;
-                RaisePropertyChanged("spaces");
+                RaisePropertyChanged(nameof(spaces));
             }
         }
 
@@ -24,7 +24,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _suckedNumbers = value;
-                RaisePropertyChanged("suckedNumbers");
+                RaisePropertyChanged(nameof(suckedNumbers));
             }
         }
 
@@ -35,7 +35,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _suckedSpaces = value;
-                RaisePropertyChanged("suckedSpaces");
+                RaisePropertyChanged(nameof(suckedSpaces));
             }
         }
 

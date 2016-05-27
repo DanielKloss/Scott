@@ -11,7 +11,7 @@
     DragStarting="control_DragStarting">
 
     <Grid>
-        <Ellipse x:Name="circleUI" Height="20" Width="20" Fill="Red" Stroke="Red" StrokeThickness="2"/>
+        <Ellipse x:Name="circleUI" Height="20" Width="20" Fill="{Binding Player, ElementName=control, Converter={StaticResource playerColourConverter}}"/>
         <TextBlock Text="{Binding Value, ElementName=control}" HorizontalAlignment="Center" TextAlignment="Center"/>
     </Grid>
 </UserControl>

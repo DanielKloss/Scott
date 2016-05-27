@@ -1,7 +1,5 @@
-using System;
 using BlackHole.UI.Helpers;
 using BlackHole.UI.Models;
-using System.Linq;
 
 namespace BlackHole.UI.ViewModels
 {
@@ -14,7 +12,7 @@ namespace BlackHole.UI.ViewModels
             set
             {
                 _game = value;
-                RaisePropertyChanged("game");
+                RaisePropertyChanged(nameof(game));
             }
         }
 
@@ -31,7 +29,7 @@ namespace BlackHole.UI.ViewModels
             }
             else
             {
-                if (playedPiece.value == 10)
+                if (playedPiece.pieceValue == 10)
                 {
                     game.WorkOutWinner();
                 }

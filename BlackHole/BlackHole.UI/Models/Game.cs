@@ -14,7 +14,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _players = value;
-                RaisePropertyChanged("players");
+                RaisePropertyChanged(nameof(players));
             }
         }
 
@@ -25,7 +25,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _board = value;
-                RaisePropertyChanged("board");
+                RaisePropertyChanged(nameof(board));
             }
         }
 
@@ -36,7 +36,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _round = value;
-                RaisePropertyChanged("round");
+                RaisePropertyChanged(nameof(round));
             }
         }
 
@@ -47,7 +47,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _turn = value;
-                RaisePropertyChanged("turn");
+                RaisePropertyChanged(nameof(turn));
             }
         }
 
@@ -65,7 +65,7 @@ namespace BlackHole.UI.Models
 
             foreach (Piece scoringPiece in scoringPieces)
             {
-                players.Single(p => p.id == scoringPiece.player).score += scoringPiece.value;
+                players.Single(p => p.id == scoringPiece.player).score += scoringPiece.pieceValue;
             }
 
             if (players.Single(p => p.id == 1).score > players.Single(p => p.id == 2).score)

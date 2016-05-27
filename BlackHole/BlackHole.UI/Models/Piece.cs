@@ -4,14 +4,14 @@ namespace BlackHole.UI.Models
 {
     public class Piece : BasePropertyChanged
     {
-        private int _value;
-        public int value
+        private int _pieceValue;
+        public int pieceValue
         {
-            get { return _value; }
+            get { return _pieceValue; }
             set
             {
-                _value = value;
-                RaisePropertyChanged("value");
+                _pieceValue = value;
+                RaisePropertyChanged(nameof(pieceValue));
             }
         }
 
@@ -22,7 +22,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _player = value;
-                RaisePropertyChanged("player");
+                RaisePropertyChanged(nameof(player));
             }
         }
 

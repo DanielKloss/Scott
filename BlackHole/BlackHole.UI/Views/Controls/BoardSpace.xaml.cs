@@ -38,7 +38,7 @@ namespace BlackHole.UI.Views.Controls
 
                 ContainingPiece = new Piece();
                 ContainingPiece.player = Convert.ToInt32(pieceComponents[0]);
-                ContainingPiece.value = Convert.ToInt32(pieceComponents[1]);
+                ContainingPiece.pieceValue = Convert.ToInt32(pieceComponents[1]);
 
                 ((GameViewModel)DataContext).StartNextTurn(ContainingPiece);
             }

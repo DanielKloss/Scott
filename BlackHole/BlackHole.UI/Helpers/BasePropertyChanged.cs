@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace BlackHole.UI.Helpers
 {
-    public class BasePropertyChanged : INotifyPropertyChanged
+    public abstract class BasePropertyChanged : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -12,7 +12,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _id = value;
-                RaisePropertyChanged("id");
+                RaisePropertyChanged(nameof(id));
             }
         }
 
@@ -23,7 +23,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _surroundingSpaces = value;
-                RaisePropertyChanged("surroundingSpaces");
+                RaisePropertyChanged(nameof(surroundingSpaces));
             }
         }
 
@@ -34,7 +34,7 @@ namespace BlackHole.UI.Models
             set
             {
                 _containingPiece = value;
-                RaisePropertyChanged("containingPiece");
+                RaisePropertyChanged(nameof(containingPiece));
             }
         }
 

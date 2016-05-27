@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Command.cs" />
+    <Compile Include="Helpers\PlayerColourConverter.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Piece.cs" />
