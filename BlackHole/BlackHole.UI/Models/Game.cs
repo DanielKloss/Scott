@@ -18,6 +18,17 @@ namespace BlackHole.UI.Models
             }
         }
 
+        private ObservableCollection<Piece> _pieces;
+        public ObservableCollection<Piece> pieces
+        {
+            get { return _pieces; }
+            set
+            {
+                _pieces = value;
+                RaisePropertyChanged(nameof(pieces));
+            }
+        }
+
         private Board _board;
         public Board board
         {
@@ -55,6 +66,17 @@ namespace BlackHole.UI.Models
         {
             players = new ObservableCollection<Player>() { new Player(1, "Player1"), new Player(2, "Player2") };
             board = new Board();
+
+            pieces = new ObservableCollection<Piece>();
+
+            for (int i = 1; i <= 10; i++)
+            {
+                for (int j = 1; j <= 2; j++)
+                {
+                    pieces.Add(new Piece() { player = j, pieceValue = i });
+                }
+            }
+
             round = 1;
             turn = 1;
         }

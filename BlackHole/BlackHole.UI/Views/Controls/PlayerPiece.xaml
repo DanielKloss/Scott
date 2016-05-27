@@ -8,10 +8,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     CanDrag="True"
-    DragStarting="control_DragStarting">
+    DragStarting="control_DragStarting"
+    DropCompleted="control_DropCompleted">
 
     <Grid>
-        <Ellipse x:Name="circleUI" Height="20" Width="20" Fill="{Binding Player, ElementName=control, Converter={StaticResource playerColourConverter}}"/>
+        <Ellipse Height="20" Width="20" Fill="{Binding Player, ElementName=control, Converter={StaticResource playerColourConverter}}"/>
         <TextBlock Text="{Binding Value, ElementName=control}" HorizontalAlignment="Center" TextAlignment="Center"/>
     </Grid>
 </UserControl>

@@ -2,6 +2,9 @@
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -19,6 +22,8 @@ namespace BlackHole.UI
         /// </summary>
         public App()
         {
+            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+            
             InitializeComponent();
             Suspending += OnSuspending;
         }
@@ -67,6 +72,11 @@ namespace BlackHole.UI
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
+
+                //ApplicationViewTitleBar formattableTitleBar = ApplicationView.GetForCurrentView().TitleBar;
+                //formattableTitleBar.ButtonBackgroundColor = Colors.Transparent;
+                //CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+                //coreTitleBar.ExtendViewIntoTitleBar = true;
             }
         }
 

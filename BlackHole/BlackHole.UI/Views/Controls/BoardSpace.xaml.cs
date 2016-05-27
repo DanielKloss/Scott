@@ -42,6 +42,8 @@ namespace BlackHole.UI.Views.Controls
 
                 ((GameViewModel)DataContext).StartNextTurn(ContainingPiece);
             }
+
+            e.Handled = true;
         }
 
         private void control_DragOver(object sender, DragEventArgs e)
@@ -49,6 +51,7 @@ namespace BlackHole.UI.Views.Controls
             if (e.DataView.Contains(StandardDataFormats.Text))
             {
                 e.DragUIOverride.IsCaptionVisible = false;
+                e.DragUIOverride.IsGlyphVisible = false;
                 e.AcceptedOperation = DataPackageOperation.Move;
             }
         }
