@@ -8,7 +8,7 @@
     xmlns:controls="using:BlackHole.UI.Views.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" DragLeave="Grid_DragLeave">
+    mc:Ignorable="d" AllowDrop="True" DragOver="page_DragOver" DragLeave="page_DragLeave" Background="Transparent">
 
     <Page.DataContext>
         <viewModels:GameViewModel/>
@@ -17,10 +17,10 @@
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Grid DragOver="root_DragOver">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>

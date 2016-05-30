@@ -11,9 +11,14 @@ namespace BlackHole.UI.Views
             InitializeComponent();
         }
 
-        private void Grid_DragLeave(object sender, DragEventArgs e)
+        private void page_DragLeave(object sender, DragEventArgs e)
         {
             e.AcceptedOperation = DataPackageOperation.None;
+        }
+
+        private void page_DragOver(object sender, DragEventArgs e)
+        {
+            e.DragUIOverride.IsGlyphVisible = false;
         }
     }
 }
