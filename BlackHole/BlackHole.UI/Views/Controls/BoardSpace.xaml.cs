@@ -1,10 +1,13 @@
-﻿using BlackHole.UI.Models;
+﻿using BlackHole.UI.Helpers;
+using BlackHole.UI.Models;
 using BlackHole.UI.ViewModels;
 using System;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace BlackHole.UI.Views.Controls
 {
@@ -39,6 +42,8 @@ namespace BlackHole.UI.Views.Controls
                 ContainingPiece = new Piece();
                 ContainingPiece.player = Convert.ToInt32(pieceComponents[0]);
                 ContainingPiece.pieceValue = Convert.ToInt32(pieceComponents[1]);
+
+                AnimationHelper.ScaleUpAnimation(boardPiece).Begin();
 
                 ((GameViewModel)DataContext).StartNextTurn(ContainingPiece);
             }

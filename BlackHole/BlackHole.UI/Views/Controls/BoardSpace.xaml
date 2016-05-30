@@ -12,7 +12,10 @@
     Drop="control_Drop">
 
     <Grid>
-        <Ellipse Width="50" Height="50" Stroke="Black" StrokeThickness="3" Fill="{Binding ContainingPiece.player, ElementName=control, Converter={StaticResource playerColourConverter}}"/>
-        <TextBlock Text="{Binding ContainingPiece.pieceValue, ElementName=control, Mode=TwoWay}" Style="{StaticResource PieceTextStyle}"/>
+        <Grid x:Name="boardPiece">
+            <Ellipse Width="50" Height="50" Fill="{Binding ContainingPiece.player, ElementName=control, Converter={StaticResource playerColourConverter}}"/>
+            <TextBlock Text="{Binding ContainingPiece.pieceValue, ElementName=control, Mode=TwoWay}" Style="{StaticResource PieceTextStyle}"/>
+        </Grid>
+        <Ellipse Height="50" Width="50" Stroke="Black" StrokeThickness="3"></Ellipse>
     </Grid>
 </UserControl>
