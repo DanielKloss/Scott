@@ -36,6 +36,13 @@ namespace BlackHole.UI.Views.Controls
             set { SetValue(isBlackHoleProperty, value); }
         }
 
+        public static readonly DependencyProperty isSurroundingProperty = DependencyProperty.Register("IsSurrounding", typeof(bool), typeof(BoardSpace), new PropertyMetadata(false));
+        public bool IsSurrounding
+        {
+            get { return (bool)GetValue(isSurroundingProperty); }
+            set { SetValue(isSurroundingProperty, value); }
+        }
+
         private async void control_Drop(object sender, DragEventArgs e)
         {
             if (e.DataView.Contains(StandardDataFormats.Text))

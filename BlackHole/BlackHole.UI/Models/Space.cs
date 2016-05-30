@@ -49,11 +49,23 @@ namespace BlackHole.UI.Models
             }
         }
 
+        private bool _isSurrounding;
+        public bool isSurrounding
+        {
+            get { return _isSurrounding; }
+            set
+            {
+                _isSurrounding = value;
+                RaisePropertyChanged(nameof(isSurrounding));
+            }
+        }
+
         public Space(int Id, List<int> SurroundingSpaces)
         {
             id = Id;
             surroundingSpaces = SurroundingSpaces;
             isBlackHole = false;
+            isSurrounding = false;
         }
     }
 }

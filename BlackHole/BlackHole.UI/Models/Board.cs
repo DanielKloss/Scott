@@ -87,6 +87,7 @@ namespace BlackHole.UI.Models
 
             foreach (int suckedNumber in balckHole.surroundingSpaces)
             {
+                spaces.Single(s => s.id == suckedNumber).isSurrounding = true;
                 scoringPieces.Add(spaces.Single(s => s.id == suckedNumber).containingPiece);
             }
 
