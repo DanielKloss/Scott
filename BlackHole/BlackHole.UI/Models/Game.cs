@@ -81,10 +81,8 @@ namespace BlackHole.UI.Models
             turn = 1;
         }
 
-        public void WorkOutWinner()
+        public int WorkOutWinner(List<Piece> scoringPieces)
         {
-            List<Piece> scoringPieces = board.GetScoringPieces();
-
             foreach (Piece scoringPiece in scoringPieces)
             {
                 players.Single(p => p.id == scoringPiece.player).score += scoringPiece.pieceValue;
@@ -92,15 +90,15 @@ namespace BlackHole.UI.Models
 
             if (players.Single(p => p.id == 1).score > players.Single(p => p.id == 2).score)
             {
-                //Player 2 Wins
+                return 2;
             }
             else if (players.Single(p => p.id == 2).score > players.Single(p => p.id == 1).score)
             {
-                //Player 1 Wins
+                return 1;
             }
             else
             {
-                //Draw!
+                return 0;
             }
         }
     }

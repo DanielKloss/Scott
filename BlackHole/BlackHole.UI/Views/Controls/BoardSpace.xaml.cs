@@ -3,11 +3,8 @@ using BlackHole.UI.Models;
 using BlackHole.UI.ViewModels;
 using System;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
 
 namespace BlackHole.UI.Views.Controls
 {
@@ -30,6 +27,13 @@ namespace BlackHole.UI.Views.Controls
         {
             get { return (Piece)GetValue(containingPieceProperty); }
             set { SetValue(containingPieceProperty, value); }
+        }
+
+        public static readonly DependencyProperty isBlackHoleProperty = DependencyProperty.Register("IsBlackHole", typeof(bool), typeof(BoardSpace), new PropertyMetadata(false));
+        public bool IsBlackHole
+        {
+            get { return (bool)GetValue(isBlackHoleProperty); }
+            set { SetValue(isBlackHoleProperty, value); }
         }
 
         private async void control_Drop(object sender, DragEventArgs e)

@@ -1,6 +1,4 @@
 ﻿<Page
-    x:Name="root"
-    x:Class="BlackHole.UI.Views.GameView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BlackHole.UI.Views"
@@ -8,7 +6,13 @@
     xmlns:controls="using:BlackHole.UI.Views.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" AllowDrop="True" DragOver="page_DragOver" DragLeave="page_DragLeave" Background="Transparent">
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core" 
+    xmlns:Media="using:Microsoft.Xaml.Interactions.Media"
+    x:Name="root"
+    x:Class="BlackHole.UI.Views.GameView"
+    mc:Ignorable="d" 
+    AllowDrop="True" DragOver="page_DragOver" DragLeave="page_DragLeave" Background="Transparent">
 
     <Page.DataContext>
         <viewModels:GameViewModel/>
@@ -20,7 +24,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid x:Name="boardSpaces">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -39,54 +43,76 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <controls:BoardSpace SpaceId="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" 
-                                 ContainingPiece="{Binding game.board.spaces[0].containingPiece, Mode=TwoWay}"/>
+            <controls:BoardSpace x:Name="space1" SpaceId="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" 
+				ContainingPiece="{Binding game.board.spaces[0].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[0].isBlackHole}">
+            </controls:BoardSpace>
             <controls:BoardSpace SpaceId="2" Grid.Row="1" Grid.Column="2" 
-                                 ContainingPiece="{Binding game.board.spaces[1].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[1].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[1].isBlackHole}"/>
             <controls:BoardSpace SpaceId="3" Grid.Row="1" Grid.Column="3" 
-                                 ContainingPiece="{Binding game.board.spaces[2].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[2].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[2].isBlackHole}"/>
             <controls:BoardSpace SpaceId="4" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" 
-                                 ContainingPiece="{Binding game.board.spaces[3].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[3].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[3].isBlackHole}"/>
             <controls:BoardSpace SpaceId="5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" 
-                                 ContainingPiece="{Binding game.board.spaces[4].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[4].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[4].isBlackHole}"/>
             <controls:BoardSpace SpaceId="6" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" 
-                                 ContainingPiece="{Binding game.board.spaces[5].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[5].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[5].isBlackHole}"/>
             <controls:BoardSpace SpaceId="7" Grid.Row="3" Grid.Column="1" 
-                                 ContainingPiece="{Binding game.board.spaces[6].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[6].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[6].isBlackHole}"/>
             <controls:BoardSpace SpaceId="8" Grid.Row="3" Grid.Column="2" 
-                                 ContainingPiece="{Binding game.board.spaces[7].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[7].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[7].isBlackHole}"/>
             <controls:BoardSpace SpaceId="9" Grid.Row="3" Grid.Column="3" 
-                                 ContainingPiece="{Binding game.board.spaces[8].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[8].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[8].isBlackHole}"/>
             <controls:BoardSpace SpaceId="10" Grid.Row="3" Grid.Column="4" 
-                                 ContainingPiece="{Binding game.board.spaces[9].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[9].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[9].isBlackHole}"/>
             <controls:BoardSpace SpaceId="11" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" 
-                                 ContainingPiece="{Binding game.board.spaces[10].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[10].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[10].isBlackHole}"/>
             <controls:BoardSpace SpaceId="12" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
-                                 ContainingPiece="{Binding game.board.spaces[11].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[11].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[11].isBlackHole}"/>
             <controls:BoardSpace SpaceId="13" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" 
-                                 ContainingPiece="{Binding game.board.spaces[12].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[12].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[12].isBlackHole}"/>
             <controls:BoardSpace SpaceId="14" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" 
-                                 ContainingPiece="{Binding game.board.spaces[13].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[13].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[13].isBlackHole}"/>
             <controls:BoardSpace SpaceId="15" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" 
-                                 ContainingPiece="{Binding game.board.spaces[14].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[14].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[14].isBlackHole}"/>
             <controls:BoardSpace SpaceId="16" Grid.Row="5" Grid.Column="0" 
-                                 ContainingPiece="{Binding game.board.spaces[15].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[15].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[15].isBlackHole}"/>
             <controls:BoardSpace SpaceId="17" Grid.Row="5" Grid.Column="1" 
-                                 ContainingPiece="{Binding game.board.spaces[16].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[16].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[16].isBlackHole}"/>
             <controls:BoardSpace SpaceId="18" Grid.Row="5" Grid.Column="2" 
-                                 ContainingPiece="{Binding game.board.spaces[17].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[17].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[17].isBlackHole}"/>
             <controls:BoardSpace SpaceId="19" Grid.Row="5" Grid.Column="3" 
-                                 ContainingPiece="{Binding game.board.spaces[18].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[18].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[18].isBlackHole}"/>
             <controls:BoardSpace SpaceId="20" Grid.Row="5" Grid.Column="4" 
-                                 ContainingPiece="{Binding game.board.spaces[19].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[19].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[19].isBlackHole}"/>
             <controls:BoardSpace SpaceId="21" Grid.Row="5" Grid.Column="5" 
-                                 ContainingPiece="{Binding game.board.spaces[20].containingPiece, Mode=TwoWay}"/>
+				ContainingPiece="{Binding game.board.spaces[20].containingPiece, Mode=TwoWay}"
+				IsBlackHole="{Binding game.board.spaces[20].isBlackHole}"/>
         </Grid>
 
 
         <Grid Grid.Row="1">
             <ListView ItemsSource="{Binding game.pieces}" Margin="0,0,0,4" 
-                      ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
+				ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}"/>

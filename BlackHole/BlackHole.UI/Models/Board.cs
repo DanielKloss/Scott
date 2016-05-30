@@ -67,21 +67,27 @@ namespace BlackHole.UI.Models
             spaces.Add(new Space(21, new List<int>() { 15, 20 }));
         }
 
-
-        public List<Piece> GetScoringPieces()
+        public Space GetBlackHole()
         {
-            List<Piece> scoringPieces = new List<Piece>();
-
             foreach (Space space in spaces)
             {
                 if (space.containingPiece == null)
                 {
-                    foreach (int suckedNumber in space.surroundingSpaces)
-                    {
-                        scoringPieces.Add(spaces.Single<Space>(s => s.id == suckedNumber).containingPiece);
-                    }
-                    break;
+                    space.isBlackHole = true;
+                    return space;
                 }
+            }
+
+            return null;
+        }
+
+        public List<Piece> GetScoringPieces(Space balckHole)
+        {
+            List<Piece> scoringPieces = new List<Piece>();
+
+            foreach (int suckedNumber in balckHole.surroundingSpaces)
+            {
+                scoringPieces.Add(spaces.Single(s => s.id == suckedNumber).containingPiece);
             }
 
             return scoringPieces;

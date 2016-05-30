@@ -1,5 +1,6 @@
 using BlackHole.UI.Helpers;
 using BlackHole.UI.Models;
+using System.Collections.Generic;
 
 namespace BlackHole.UI.ViewModels
 {
@@ -31,7 +32,9 @@ namespace BlackHole.UI.ViewModels
             {
                 if (playedPiece.pieceValue == 10)
                 {
-                    game.WorkOutWinner();
+                    Space blackHole = game.board.GetBlackHole();
+                    List<Piece> scoringPieces = game.board.GetScoringPieces(blackHole);
+                    game.WorkOutWinner(scoringPieces);
                 }
                 else
                 {
@@ -39,7 +42,6 @@ namespace BlackHole.UI.ViewModels
                     game.turn--;
                 }
             }
-
         }
     }
 }

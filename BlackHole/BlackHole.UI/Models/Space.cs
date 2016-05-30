@@ -38,10 +38,22 @@ namespace BlackHole.UI.Models
             }
         }
 
+        private bool _isBlackHole;
+        public bool isBlackHole
+        {
+            get { return _isBlackHole; }
+            set
+            {
+                _isBlackHole = value;
+                RaisePropertyChanged(nameof(isBlackHole));
+            }
+        }
+
         public Space(int Id, List<int> SurroundingSpaces)
         {
             id = Id;
             surroundingSpaces = SurroundingSpaces;
+            isBlackHole = false;
         }
     }
 }
