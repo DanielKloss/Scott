@@ -40,12 +40,12 @@
                 <Core:DataTriggerBehavior Binding="{Binding IsSurrounding, ElementName=control}" Value="True">
                     <Media:ControlStoryboardAction>
                         <Media:ControlStoryboardAction.Storyboard>
-                            <Storyboard>
+                            <Storyboard Duration="0:0:2.5" Completed="Storyboard_Completed">
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="boardPiece">
                                     <EasingDoubleKeyFrame KeyTime="1" Value="1"/>
                                     <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="boardPiece">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="boardPiece" Completed="Storyboard_Completed">
                                     <EasingDoubleKeyFrame KeyTime="1" Value="1"/>
                                     <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
                                 </DoubleAnimationUsingKeyFrames>

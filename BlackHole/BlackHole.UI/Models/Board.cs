@@ -1,13 +1,14 @@
 using BlackHole.UI.Helpers;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace BlackHole.UI.Models
 {
     public class Board : BasePropertyChanged
     {
-        private List<Space> _spaces;
-        public List<Space> spaces
+        private ObservableCollection<Space> _spaces;
+        public ObservableCollection<Space> spaces
         {
             get { return _spaces; }
             set
@@ -17,8 +18,8 @@ namespace BlackHole.UI.Models
             }
         }
 
-        private List<int> _suckedNumbers;
-        public List<int> suckedNumbers
+        private ObservableCollection<int> _suckedNumbers;
+        public ObservableCollection<int> suckedNumbers
         {
             get { return _suckedNumbers; }
             set
@@ -28,8 +29,8 @@ namespace BlackHole.UI.Models
             }
         }
 
-        private List<Space> _suckedSpaces;
-        public List<Space> suckedSpaces
+        private ObservableCollection<Space> _suckedSpaces;
+        public ObservableCollection<Space> suckedSpaces
         {
             get { return _suckedSpaces; }
             set
@@ -39,9 +40,20 @@ namespace BlackHole.UI.Models
             }
         }
 
+        private ObservableCollection<Piece> _scoringPieces;
+        public ObservableCollection<Piece> scoringPieces
+        {
+            get { return _scoringPieces; }
+            set
+            {
+                _scoringPieces = value;
+                RaisePropertyChanged(nameof(scoringPieces));
+            }
+        }
+
         public Board()
         {
-            spaces = new List<Space>();
+            spaces = new ObservableCollection<Space>();
 
 
             spaces.Add(new Space(1, new List<int>() { 2, 3 }));
@@ -81,17 +93,15 @@ namespace BlackHole.UI.Models
             return null;
         }
 
-        public List<Piece> GetScoringPieces(Space balckHole)
+        public void GetScoringPieces(Space balckHole)
         {
-            List<Piece> scoringPieces = new List<Piece>();
+            scoringPieces = new ObservableCollection<Piece>();
 
             foreach (int suckedNumber in balckHole.surroundingSpaces)
             {
                 spaces.Single(s => s.id == suckedNumber).isSurrounding = true;
                 scoringPieces.Add(spaces.Single(s => s.id == suckedNumber).containingPiece);
             }
-
-            return scoringPieces;
         }
     }
 }

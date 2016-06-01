@@ -62,6 +62,28 @@ namespace BlackHole.UI.Models
             }
         }
 
+        private bool _isFinished;
+        public bool isFinished
+        {
+            get { return _isFinished; }
+            set
+            {
+                _isFinished = value;
+                RaisePropertyChanged(nameof(isFinished));
+            }
+        }
+
+        private bool _isDraw;
+        public bool isDraw
+        {
+            get { return _isDraw; }
+            set
+            {
+                _isDraw = value;
+                RaisePropertyChanged(nameof(isDraw));
+            }
+        }
+
         public Game()
         {
             players = new ObservableCollection<Player>() { new Player(1, "Player1"), new Player(2, "Player2") };
@@ -79,9 +101,11 @@ namespace BlackHole.UI.Models
 
             round = 1;
             turn = 1;
+            isDraw = false;
+            isFinished = false;
         }
 
-        public int WorkOutWinner(List<Piece> scoringPieces)
+        public void WorkOutWinner(ObservableCollection<Piece> scoringPieces)
         {
             foreach (Piece scoringPiece in scoringPieces)
             {
@@ -90,15 +114,15 @@ namespace BlackHole.UI.Models
 
             if (players.Single(p => p.id == 1).score > players.Single(p => p.id == 2).score)
             {
-                return 2;
+                players.Single(p => p.id == 2).isWinner = true;
             }
             else if (players.Single(p => p.id == 2).score > players.Single(p => p.id == 1).score)
             {
-                return 1;
+                players.Single(p => p.id == 1).isWinner = true;
             }
             else
             {
-                return 0;
+                isDraw = true;
             }
         }
     }

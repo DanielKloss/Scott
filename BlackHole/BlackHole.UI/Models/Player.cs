@@ -38,6 +38,17 @@ namespace BlackHole.UI.Models
             }
         }
 
+        private bool _isWinner;
+        public bool isWinner
+        {
+            get { return _isWinner; }
+            set
+            {
+                _isWinner = value;
+                RaisePropertyChanged(nameof(isWinner));
+            }
+        }
+
         private Color _colour;
         public Color colour
         {
@@ -54,6 +65,7 @@ namespace BlackHole.UI.Models
         {
             id = Id;
             name = Name;
+            isWinner = false;
         }
 
     }

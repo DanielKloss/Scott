@@ -19,6 +19,21 @@
     </Page.DataContext>
 
     <Grid Background="Transparent">
+        <Interactivity:Interaction.Behaviors>
+            <Core:DataTriggerBehavior Binding="{Binding game.isFinished}" Value="True">
+                <Media:ControlStoryboardAction>
+                    <Media:ControlStoryboardAction.Storyboard>
+                        <Storyboard Storyboard.TargetName="FinishedPopup" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                            <DoubleAnimation From="1274" To="0" Duration="0:0:1">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </Media:ControlStoryboardAction.Storyboard>
+                </Media:ControlStoryboardAction>
+            </Core:DataTriggerBehavior>
+        </Interactivity:Interaction.Behaviors>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
@@ -129,7 +144,6 @@
                                  IsSurrounding="{Binding game.board.spaces[20].isSurrounding}"/>
         </Grid>
 
-
         <Grid Grid.Row="1">
             <ListView ItemsSource="{Binding game.pieces}" Margin="0,0,0,4" 
 				ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
@@ -139,6 +153,84 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </Grid>
+
+        <Grid x:Name="FinishedPopup" Grid.Row="0" Grid.RowSpan="2" Background="LightGray" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <CompositeTransform TranslateY="1274"/>
+            </Grid.RenderTransform>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="Black" BorderThickness="3" Background="White" Padding="8,8,8,8" CornerRadius="3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+
+                        <Path Grid.Column="0" HorizontalAlignment="Center" Margin="0,-8,0,0" Fill="{Binding game.players[0].id, Converter={StaticResource playerColourConverter}}">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                        <PathFigure StartPoint="0,0">
+                                            <ArcSegment IsLargeArc="True" Size="25, 25" Point="100,0" SweepDirection="CounterClockwise" />
+                                        </PathFigure>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+
+                        <Path Grid.Column="1" HorizontalAlignment="Center" Margin="0,-8,0,0" Fill="{Binding game.players[1].id, Converter={StaticResource playerColourConverter}}">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                        <PathFigure StartPoint="0,0">
+                                            <ArcSegment IsLargeArc="True" Size="25, 25" Point="100,0" SweepDirection="CounterClockwise" />
+                                        </PathFigure>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding game.players[0].score}" Style="{StaticResource PieceTextStyle}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding game.players[1].score}" Style="{StaticResource PieceTextStyle}"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="WINNER" Visibility="{Binding game.players[0].isWinner, Converter={StaticResource visibilityConverter}}"
+                               Style="{StaticResource WinnerTextStyle}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="WINNER" Visibility="{Binding game.players[1].isWinner, Converter={StaticResource visibilityConverter}}"
+                               Style="{StaticResource WinnerTextStyle}"/>
+                        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Text="DRAW" Visibility="{Binding game.isDraw, Converter={StaticResource visibilityConverter}}"
+                               Style="{StaticResource WinnerTextStyle}"/>
+
+                        <Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1.5" Margin="0,0,0,8"/>
+
+                        <ListView Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" ItemsSource="{Binding game.board.scoringPieces}" Margin="0,0,0,4" HorizontalAlignment="Center"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </Border>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,0">
+                    <Button Content="" Style="{StaticResource EndGameButtonStyle}"/>
+                    <Button Content="" Style="{StaticResource EndGameButtonStyle}"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page> 

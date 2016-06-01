@@ -71,5 +71,10 @@ namespace BlackHole.UI.Views.Controls
                 e.AcceptedOperation = DataPackageOperation.Move;
             }
         }
+
+        private void Storyboard_Completed(object sender, object e)
+        {
+            ((GameViewModel)DataContext).game.isFinished = true;
+        }
     }
 }
