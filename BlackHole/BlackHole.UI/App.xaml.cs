@@ -1,7 +1,10 @@
 ﻿using BlackHole.UI.Views;
 using System;
+using System.Collections.Generic;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -11,18 +14,16 @@ namespace BlackHole.UI
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class Application : Windows.UI.Xaml.Application
     {
-        internal Frame rootFrame;
+        public readonly string canDragKey = "canDrag";
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
-        public App()
+        public Application()
         {
-            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
-            
             InitializeComponent();
             Suspending += OnSuspending;
         }
@@ -40,7 +41,7 @@ namespace BlackHole.UI
                 DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-            rootFrame = Window.Current.Content as Frame;
+            Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -56,8 +57,15 @@ namespace BlackHole.UI
                     //TODO: Load state from previously suspended application
                 }
 
+                if (!ApplicationData.Current.RoamingSettings.Values.ContainsKey(canDragKey))
+                {
+                    ApplicationData.Current.RoamingSettings.Values.Add(new KeyValuePair<string, object>(canDragKey, false));
+                }
+
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+
+                SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
             }
 
             if (e.PrelaunchActivated == false)
@@ -101,6 +109,13 @@ namespace BlackHole.UI
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).GoBack();
+
+            e.Handled = true;
         }
     }
 }

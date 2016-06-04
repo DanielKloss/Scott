@@ -5,7 +5,6 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace BlackHole.UI.Views.Controls
 {
@@ -30,6 +29,13 @@ namespace BlackHole.UI.Views.Controls
         {
             get { return (int)GetValue(playerProperty); }
             set { SetValue(playerProperty, value); }
+        }
+
+        public static readonly DependencyProperty draggableProperty = DependencyProperty.Register("Draggable", typeof(bool), typeof(PlayerPiece), new PropertyMetadata(false));
+        public bool Draggable
+        {
+            get { return (bool)GetValue(draggableProperty); }
+            set { SetValue(draggableProperty, value); }
         }
 
         public PlayerPiece(PlayerPiece c)

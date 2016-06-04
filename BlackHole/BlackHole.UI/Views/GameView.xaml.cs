@@ -10,14 +10,8 @@ namespace BlackHole.UI.Views
         public GameView()
         {
             InitializeComponent();
-            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
-        }
 
-        private void OnBackRequested(object sender, BackRequestedEventArgs e)
-        {
-            App.Current.Exit();
-
-            e.Handled = true;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
         private void page_DragLeave(object sender, DragEventArgs e)

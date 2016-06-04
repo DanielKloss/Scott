@@ -2,9 +2,10 @@ using BlackHole.UI.Helpers;
 using BlackHole.UI.Models;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using System;
-using Windows.UI.Xaml;
 using BlackHole.UI.Views;
+using Windows.Storage;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace BlackHole.UI.ViewModels
 {
@@ -18,6 +19,17 @@ namespace BlackHole.UI.ViewModels
             {
                 _game = value;
                 RaisePropertyChanged(nameof(game));
+            }
+        }
+
+        private bool _draggable;
+        public bool draggable
+        {
+            get { return _draggable; }
+            set
+            {
+                _draggable = value;
+                RaisePropertyChanged(nameof(draggable));
             }
         }
 
@@ -35,9 +47,24 @@ namespace BlackHole.UI.ViewModels
             set { _restartGameCommand = value; }
         }
 
+        private ICommand _navigateToSettingsCommand;
+        public ICommand navigateToSettingsCommand
+        {
+            get
+            {
+                if (_navigateToSettingsCommand == null)
+                {
+                    _navigateToSettingsCommand = new Command(NavigateToSettings, () => true);
+                }
+                return _navigateToSettingsCommand;
+            }
+            set { _navigateToSettingsCommand = value; }
+        }
+
         public GameViewModel()
         {
             game = new Game();
+            draggable = (bool)ApplicationData.Current.RoamingSettings.Values[((Application)Windows.UI.Xaml.Application.Current).canDragKey];
 
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -89,7 +116,12 @@ namespace BlackHole.UI.ViewModels
 
         private void RestartGame()
         {
-            ((App)Application.Current).rootFrame.Navigate(typeof(GameView));
+            ((Frame)Window.Current.Content).Navigate(typeof(GameView));
+        }
+
+        private void NavigateToSettings()
+        {
+           ((Frame)Window.Current.Content).Navigate(typeof(SettingsView));
         }
     }
 }

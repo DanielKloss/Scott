@@ -34,10 +34,16 @@
                 </Media:ControlStoryboardAction>
             </Core:DataTriggerBehavior>
         </Interactivity:Interaction.Behaviors>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
+
+        <StackPanel VerticalAlignment="Top" Margin="8,8,0,0">
+            <Button Style="{StaticResource EndGameButtonStyle}" Content="" Command="{Binding restartGameCommand}"/>
+            <Button Style="{StaticResource EndGameButtonStyle}" Content="" Command="{Binding navigateToSettingsCommand}"/>
+        </StackPanel>
 
         <Grid x:Name="boardSpaces">
             <Grid.RowDefinitions>
@@ -149,7 +155,7 @@
 				ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}"/>
+                        <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}" CanDrag="{Binding DataContext.draggable, ElementName=root}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -225,7 +231,7 @@
                         </ListView>
                     </Grid>
                 </Border>
-                
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,16,0,0">
                     <Button Content="" Style="{StaticResource EndGameButtonStyle}" Visibility="Collapsed"/>
                     <Button Content="" Style="{StaticResource EndGameButtonStyle}" Command="{Binding restartGameCommand}"/>
