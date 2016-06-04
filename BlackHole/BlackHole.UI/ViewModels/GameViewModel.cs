@@ -1,6 +1,10 @@
 using BlackHole.UI.Helpers;
 using BlackHole.UI.Models;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System;
+using Windows.UI.Xaml;
+using BlackHole.UI.Views;
 
 namespace BlackHole.UI.ViewModels
 {
@@ -15,6 +19,20 @@ namespace BlackHole.UI.ViewModels
                 _game = value;
                 RaisePropertyChanged(nameof(game));
             }
+        }
+
+        private ICommand _restartGameCommand;
+        public ICommand restartGameCommand
+        {
+            get
+            {
+                if (_restartGameCommand == null)
+                {
+                    _restartGameCommand = new Command(RestartGame, () => true);
+                }
+                return _restartGameCommand;
+            }
+            set { _restartGameCommand = value; }
         }
 
         public GameViewModel()
@@ -67,6 +85,11 @@ namespace BlackHole.UI.ViewModels
                     game.turn--;
                 }
             }
+        }
+
+        private void RestartGame()
+        {
+            ((App)Application.Current).rootFrame.Navigate(typeof(GameView));
         }
     }
 }
