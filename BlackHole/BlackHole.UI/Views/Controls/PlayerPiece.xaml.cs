@@ -31,13 +31,6 @@ namespace BlackHole.UI.Views.Controls
             set { SetValue(playerProperty, value); }
         }
 
-        public static readonly DependencyProperty draggableProperty = DependencyProperty.Register("Draggable", typeof(bool), typeof(PlayerPiece), new PropertyMetadata(false));
-        public bool Draggable
-        {
-            get { return (bool)GetValue(draggableProperty); }
-            set { SetValue(draggableProperty, value); }
-        }
-
         public PlayerPiece(PlayerPiece c)
         {
             InitializeComponent();

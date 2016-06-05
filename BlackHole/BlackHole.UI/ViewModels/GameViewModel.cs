@@ -64,7 +64,7 @@ namespace BlackHole.UI.ViewModels
         public GameViewModel()
         {
             game = new Game();
-            draggable = (bool)ApplicationData.Current.RoamingSettings.Values[((Application)Windows.UI.Xaml.Application.Current).canDragKey];
+            GetDraggable();
 
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -92,6 +92,11 @@ namespace BlackHole.UI.ViewModels
             }
         }
 
+        public void GetDraggable()
+        {
+            draggable = (bool)ApplicationData.Current.RoamingSettings.Values[((Application)Windows.UI.Xaml.Application.Current).canDragKey];
+        }
+
         public void StartNextTurn(Piece playedPiece)
         {
             if (playedPiece.player == 1)
@@ -116,7 +121,7 @@ namespace BlackHole.UI.ViewModels
 
         private void RestartGame()
         {
-            ((Frame)Window.Current.Content).Navigate(typeof(GameView));
+            ((Frame)Window.Current.Content).Navigate(typeof(GameView), true);
         }
 
         private void NavigateToSettings()
