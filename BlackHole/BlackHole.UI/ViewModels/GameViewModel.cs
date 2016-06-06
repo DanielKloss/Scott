@@ -7,12 +7,15 @@ using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System;
-using System.Linq;
 
 namespace BlackHole.UI.ViewModels
 {
     public class GameViewModel : BasePropertyChanged
     {
+        private Piece _lastPlayedPiece;
+        private int _lastPlayedSpaceId;
+        private bool _hasUndone;
+
         private Game _game;
         public Game game
         {
@@ -63,6 +66,20 @@ namespace BlackHole.UI.ViewModels
             set { _addPieceCommand = value; }
         }
 
+        private ICommand _undoCommand;
+        public ICommand undoCommand
+        {
+            get
+            {
+                if (_undoCommand == null)
+                {
+                    _undoCommand = new Command(Undo, CanUndo);
+                }
+                return _undoCommand;
+            }
+            set { _undoCommand = value; }
+        }
+
         private ICommand _navigateToSettingsCommand;
         public ICommand navigateToSettingsCommand
         {
@@ -75,6 +92,16 @@ namespace BlackHole.UI.ViewModels
                 return _navigateToSettingsCommand;
             }
             set { _navigateToSettingsCommand = value; }
+        }
+
+        private void UpdateCommands()
+        {
+            ((Command)undoCommand).RaiseCanExecuteChanged();
+
+            for (int i = 1; i <= 21; i++)
+            {
+                ((Command<int>)addPieceCommand).CanExecute(i);
+            }
         }
 
         public GameViewModel()
@@ -115,8 +142,15 @@ namespace BlackHole.UI.ViewModels
 
         private void AddPiece(int boardSpace)
         {
-            game.board.spaces[boardSpace - 1].containingPiece = game.pieces[0];
+            int lastPlayedSpaceId = boardSpace;
+            Piece lastPlayedPiece = game.pieces[0];
+
+            game.board.spaces[boardSpace - 1].containingPiece = lastPlayedPiece;
             game.pieces.RemoveAt(0);
+
+            StartNextTurn(lastPlayedPiece, lastPlayedSpaceId);
+
+            UpdateCommands();
         }
 
         private bool CanAddPiece(int boardSpace)
@@ -131,8 +165,43 @@ namespace BlackHole.UI.ViewModels
             }
         }
 
-        public void StartNextTurn(Piece playedPiece)
+        private void Undo()
         {
+            _hasUndone = true;
+
+            game.pieces.Insert(0, _lastPlayedPiece);
+            game.board.spaces[_lastPlayedSpaceId - 1].containingPiece = null;
+
+            if (_lastPlayedPiece.player == 2)
+            {
+                game.round--;
+                game.turn++;
+            }
+            else
+            {
+                game.turn--;
+            }
+
+            UpdateCommands();
+        }
+
+        private bool CanUndo()
+        {
+            if (!_hasUndone && game.pieces.Count < 20 && !game.isFinished)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void StartNextTurn(Piece playedPiece, int playedSpaceId)
+        {
+            _lastPlayedPiece = _lastPlayedPiece = playedPiece;
+            _lastPlayedSpaceId = playedSpaceId;
+
             if (playedPiece.player == 1)
             {
                 game.turn++;
@@ -151,6 +220,8 @@ namespace BlackHole.UI.ViewModels
                     game.turn--;
                 }
             }
+
+            _hasUndone = false;
         }
 
         private void RestartGame()

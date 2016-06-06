@@ -43,6 +43,7 @@
         <StackPanel VerticalAlignment="Top" Margin="8,8,0,0">
             <Button Style="{StaticResource EndGameButtonStyle}" Content="" Command="{Binding restartGameCommand}"/>
             <Button Style="{StaticResource EndGameButtonStyle}" Content="" Command="{Binding navigateToSettingsCommand}"/>
+            <Button Style="{StaticResource EndGameButtonStyle}" Content="" Command="{Binding undoCommand}"/>
         </StackPanel>
 
         <Grid x:Name="boardSpaces">
@@ -74,7 +75,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="2">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="2"
@@ -84,7 +85,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="3">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="3"
@@ -94,7 +95,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="4">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="4"
@@ -104,7 +105,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="5">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="5"
@@ -114,7 +115,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="6">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="6"
@@ -124,7 +125,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="7">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="7"
@@ -134,7 +135,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="8">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="8"
@@ -144,7 +145,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="9">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="9"
@@ -154,7 +155,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="10">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="10"
@@ -164,7 +165,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="11">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="11"
@@ -174,7 +175,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="12">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="12"
@@ -184,7 +185,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="13">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="13"
@@ -194,7 +195,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="14">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="14"
@@ -204,7 +205,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="15">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="15"
@@ -214,7 +215,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="5" Grid.Column="0" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="5" Grid.Column="0" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="16">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="16"
@@ -224,7 +225,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="5" Grid.Column="1" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="5" Grid.Column="1" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="17">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="17"
@@ -234,7 +235,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="5" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="5" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="18">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="18"
@@ -244,7 +245,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="5" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="5" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="19">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="19"
@@ -254,7 +255,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="5" Grid.Column="4" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="5" Grid.Column="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="20">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="20"
@@ -264,7 +265,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="5" Grid.Column="5" Style="{StaticResource SpaceButtonStyle}">
+            <Button Grid.Row="5" Grid.Column="5" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="21">
                 <Button.Template>
                     <ControlTemplate>
                         <controls:BoardSpace SpaceId="21" 
