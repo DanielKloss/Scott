@@ -63,91 +63,217 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <controls:BoardSpace SpaceId="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" 
+ 
+            <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="1">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="1"  
 				                 ContainingPiece="{Binding game.board.spaces[0].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[0].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[0].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="2" Grid.Row="1" Grid.Column="2" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="2"
 				                 ContainingPiece="{Binding game.board.spaces[1].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[1].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[1].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="3" Grid.Row="1" Grid.Column="3" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="3"
 				                 ContainingPiece="{Binding game.board.spaces[2].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[2].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[2].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="4" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="4"
 				                 ContainingPiece="{Binding game.board.spaces[3].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[3].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[3].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="5"
 				                 ContainingPiece="{Binding game.board.spaces[4].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[4].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[4].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="6" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="6"
 				                 ContainingPiece="{Binding game.board.spaces[5].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[5].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[5].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="7" Grid.Row="3" Grid.Column="1" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="7"
 				                 ContainingPiece="{Binding game.board.spaces[6].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[6].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[6].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="8" Grid.Row="3" Grid.Column="2" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="8"
 				                 ContainingPiece="{Binding game.board.spaces[7].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[7].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[7].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="9" Grid.Row="3" Grid.Column="3" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="9"
 				                 ContainingPiece="{Binding game.board.spaces[8].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[8].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[8].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="10" Grid.Row="3" Grid.Column="4" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="10"
 				                 ContainingPiece="{Binding game.board.spaces[9].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[9].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[9].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="11" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="11"
 				                 ContainingPiece="{Binding game.board.spaces[10].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[10].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[10].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="12" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="12"
 				                 ContainingPiece="{Binding game.board.spaces[11].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[11].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[11].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="13" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="13"
 				                 ContainingPiece="{Binding game.board.spaces[12].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[12].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[12].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="14" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="14"
 				                 ContainingPiece="{Binding game.board.spaces[13].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[13].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[13].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="15" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="15"
 				                 ContainingPiece="{Binding game.board.spaces[14].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[14].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[14].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="16" Grid.Row="5" Grid.Column="0" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="5" Grid.Column="0" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="16"
 				                 ContainingPiece="{Binding game.board.spaces[15].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[15].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[15].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="17" Grid.Row="5" Grid.Column="1" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="5" Grid.Column="1" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="17"
 				                 ContainingPiece="{Binding game.board.spaces[16].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[16].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[16].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="18" Grid.Row="5" Grid.Column="2" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="5" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="18"
 				                 ContainingPiece="{Binding game.board.spaces[17].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[17].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[17].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="19" Grid.Row="5" Grid.Column="3" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="5" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="19"
 				                 ContainingPiece="{Binding game.board.spaces[18].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[18].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[18].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="20" Grid.Row="5" Grid.Column="4" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="5" Grid.Column="4" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="20"
 				                 ContainingPiece="{Binding game.board.spaces[19].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[19].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[19].isSurrounding}"/>
-            <controls:BoardSpace SpaceId="21" Grid.Row="5" Grid.Column="5" 
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="5" Grid.Column="5" Style="{StaticResource SpaceButtonStyle}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <controls:BoardSpace SpaceId="21" 
                                  ContainingPiece="{Binding game.board.spaces[20].containingPiece, Mode=TwoWay}"
                                  IsBlackHole="{Binding game.board.spaces[20].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[20].isSurrounding}"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Grid>
 
         <Grid Grid.Row="1">

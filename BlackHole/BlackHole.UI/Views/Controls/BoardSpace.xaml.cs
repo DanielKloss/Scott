@@ -54,8 +54,6 @@ namespace BlackHole.UI.Views.Controls
                 ContainingPiece.player = Convert.ToInt32(pieceComponents[0]);
                 ContainingPiece.pieceValue = Convert.ToInt32(pieceComponents[1]);
 
-                AnimationHelper.ScaleUpAnimation(boardPiece).Begin();
-
                 ((GameViewModel)DataContext).StartNextTurn(ContainingPiece);
             }
 

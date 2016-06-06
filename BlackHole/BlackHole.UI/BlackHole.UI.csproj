@@ -99,7 +99,6 @@
     <Compile Include="Helpers\Command.cs" />
     <Compile Include="Helpers\DeviceTypeHelper.cs" />
     <Compile Include="Helpers\PlayerColourConverter.cs" />
-    <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\VisibilityConverter.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Game.cs" />

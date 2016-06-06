@@ -6,6 +6,8 @@ using BlackHole.UI.Views;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System;
+using System.Linq;
 
 namespace BlackHole.UI.ViewModels
 {
@@ -45,6 +47,20 @@ namespace BlackHole.UI.ViewModels
                 return _restartGameCommand;
             }
             set { _restartGameCommand = value; }
+        }
+
+        private ICommand _addPieceCommand;
+        public ICommand addPieceCommand
+        {
+            get
+            {
+                if (_addPieceCommand == null)
+                {
+                    _addPieceCommand = new Command<int>(AddPiece, CanAddPiece);
+                }
+                return _addPieceCommand;
+            }
+            set { _addPieceCommand = value; }
         }
 
         private ICommand _navigateToSettingsCommand;
@@ -97,6 +113,24 @@ namespace BlackHole.UI.ViewModels
             draggable = (bool)ApplicationData.Current.RoamingSettings.Values[((Application)Windows.UI.Xaml.Application.Current).canDragKey];
         }
 
+        private void AddPiece(int boardSpace)
+        {
+            game.board.spaces[boardSpace - 1].containingPiece = game.pieces[0];
+            game.pieces.RemoveAt(0);
+        }
+
+        private bool CanAddPiece(int boardSpace)
+        {
+            if (game.board.spaces[boardSpace - 1].containingPiece == null && game.isFinished != true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void StartNextTurn(Piece playedPiece)
         {
             if (playedPiece.player == 1)
@@ -126,7 +160,7 @@ namespace BlackHole.UI.ViewModels
 
         private void NavigateToSettings()
         {
-           ((Frame)Window.Current.Content).Navigate(typeof(SettingsView));
+            ((Frame)Window.Current.Content).Navigate(typeof(SettingsView));
         }
     }
 }
