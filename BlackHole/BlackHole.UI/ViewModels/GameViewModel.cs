@@ -80,18 +80,18 @@ namespace BlackHole.UI.ViewModels
             set { _undoCommand = value; }
         }
 
-        private ICommand _navigateToSettingsCommand;
-        public ICommand navigateToSettingsCommand
+        private ICommand _navigateToCommand;
+        public ICommand navigateToCommand
         {
             get
             {
-                if (_navigateToSettingsCommand == null)
+                if (_navigateToCommand == null)
                 {
-                    _navigateToSettingsCommand = new Command(NavigateToSettings, () => true);
+                    _navigateToCommand = new Command<string>(NavigateTo, CanNavigateTo);
                 }
-                return _navigateToSettingsCommand;
+                return _navigateToCommand;
             }
-            set { _navigateToSettingsCommand = value; }
+            set { _navigateToCommand = value; }
         }
 
         private void UpdateCommands()
@@ -229,9 +229,27 @@ namespace BlackHole.UI.ViewModels
             ((Frame)Window.Current.Content).Navigate(typeof(GameView), true);
         }
 
-        private void NavigateToSettings()
+        private bool CanNavigateTo(string page)
         {
-            ((Frame)Window.Current.Content).Navigate(typeof(SettingsView));
+            return true;
+        }
+
+        private void NavigateTo(string page)
+        {
+            switch (page)
+            {
+                case "settings":
+                    ((Frame)Window.Current.Content).Navigate(typeof(SettingsView));
+                    break;
+                case "help":
+                    ((Frame)Window.Current.Content).Navigate(typeof(HelpView));
+                    break;
+                case "about":
+                    ((Frame)Window.Current.Content).Navigate(typeof(AboutView));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -10,13 +10,127 @@
         <helpers:PlayerColourConverter x:Key="playerColourConverter"/>
         <helpers:VisibilityConverter x:Key="visibilityConverter"/>
 
-        <Style x:Key="PieceTextStyle" TargetType="TextBlock">
+        <ControlTemplate x:Key="BaseButtonTemplate" TargetType="Button">
+            <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <Storyboard>
+                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="PointerOver">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+									Storyboard.TargetProperty="BorderBrush">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+									Storyboard.TargetProperty="Foreground">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+									Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+									Storyboard.TargetProperty="BorderBrush">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+									Storyboard.TargetProperty="Foreground">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Target="RootGrid.(UIElement.Visibility)" Value="Collapsed"/>
+                            </VisualState.Setters>
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+									Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+									Storyboard.TargetProperty="Foreground">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+									Storyboard.TargetProperty="BorderBrush">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledTransparentBrush}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <ContentPresenter x:Name="ContentPresenter"
+					BorderBrush="{TemplateBinding BorderBrush}"
+					BorderThickness="{TemplateBinding BorderThickness}"
+					Content="{TemplateBinding Content}"
+					ContentTransitions="{TemplateBinding ContentTransitions}"
+					ContentTemplate="{TemplateBinding ContentTemplate}"
+					Padding="{TemplateBinding Padding}"
+					HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+					VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+					AutomationProperties.AccessibilityView="Raw"/>
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="BaseTextStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Audiowide-Regular.ttf#Audiowide"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style x:Key="PieceTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="FontFamily" Value="/Assets/Fonts/Audiowide-Regular.ttf#Audiowide"/>
             <Setter Property="FontSize" Value="24"/>
+        </Style>
+
+        <Style x:Key="WinnerTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+
+        <Style x:Key="TitleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,8"/>
+        </Style>
+
+        <Style x:Key="BaseButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template" Value="{StaticResource BaseButtonTemplate}"/>
+        </Style>
+
+        <Style x:Key="EndGameButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Margin" Value="0,0,16,0"/>
+        </Style>
+
+        <Style x:Key="InGameButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="40"/>
         </Style>
 
         <Style x:Key="SpaceButtonStyle" TargetType="Button">
@@ -24,19 +138,10 @@
             <Setter Property="Background" Value="Transparent"/>
         </Style>
 
-        <Style x:Key="WinnerTextStyle" TargetType="TextBlock" BasedOn="{StaticResource PieceTextStyle}">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Margin" Value="0,8"/>
-        </Style>
-
-        <Style x:Key="EndGameButtonStyle" TargetType="Button">
-            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
-            <Setter Property="FontSize" Value="32"/>
-            <Setter Property="Foreground" Value="Gray"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Height" Value="60"/>
-            <Setter Property="Width" Value="60"/>
-            <Setter Property="Margin" Value="0,0,16,0"/>
+        <Style x:Key="ToggleSwitchStyle" TargetType="ToggleSwitch">
+            <Setter Property="FontFamily" Value="/Assets/Fonts/Audiowide-Regular.ttf#Audiowide"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Margin" Value="12,8,12,8"/>
         </Style>
 
         <Style x:Key="NoBorderListViewStyle" TargetType="ListViewItem">

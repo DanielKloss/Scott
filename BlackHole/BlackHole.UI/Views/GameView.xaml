@@ -12,358 +12,365 @@
     x:Name="root"
     x:Class="BlackHole.UI.Views.GameView"
     mc:Ignorable="d" 
-    AllowDrop="True" DragOver="page_DragOver" DragLeave="page_DragLeave" Background="Transparent">
+    AllowDrop="True" DragOver="page_DragOver" DragLeave="page_DragLeave" Background="White">
 
     <Page.DataContext>
         <viewModels:GameViewModel/>
     </Page.DataContext>
 
-    <Grid Background="Transparent">
-        <Interactivity:Interaction.Behaviors>
-            <Core:DataTriggerBehavior Binding="{Binding game.isFinished}" Value="True">
-                <Media:ControlStoryboardAction>
-                    <Media:ControlStoryboardAction.Storyboard>
-                        <Storyboard Storyboard.TargetName="FinishedPopup" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
-                            <DoubleAnimation From="1274" To="0" Duration="0:0:1">
-                                <DoubleAnimation.EasingFunction>
-                                    <QuadraticEase EasingMode="EaseOut"/>
-                                </DoubleAnimation.EasingFunction>
-                            </DoubleAnimation>
-                        </Storyboard>
-                    </Media:ControlStoryboardAction.Storyboard>
-                </Media:ControlStoryboardAction>
-            </Core:DataTriggerBehavior>
-        </Interactivity:Interaction.Behaviors>
+    <Viewbox>
+        <Grid Background="Transparent">
+            <Interactivity:Interaction.Behaviors>
+                <Core:DataTriggerBehavior Binding="{Binding game.isFinished}" Value="True">
+                    <Media:ControlStoryboardAction>
+                        <Media:ControlStoryboardAction.Storyboard>
+                            <Storyboard Storyboard.TargetName="FinishedPopup" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                                <DoubleAnimation From="1274" To="0" Duration="0:0:1">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </Media:ControlStoryboardAction.Storyboard>
+                    </Media:ControlStoryboardAction>
+                </Core:DataTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel VerticalAlignment="Top" Margin="8,8,0,0">
-            <Button Style="{StaticResource EndGameButtonStyle}" Content="" Command="{Binding restartGameCommand}"/>
-            <Button Style="{StaticResource EndGameButtonStyle}" Content="" Command="{Binding navigateToSettingsCommand}"/>
-            <Button Style="{StaticResource EndGameButtonStyle}" Content="" Command="{Binding undoCommand}"/>
-        </StackPanel>
-
-        <Grid x:Name="boardSpaces">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
- 
-            <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="1">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="1"  
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,8,0,0">
+                <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding restartGameCommand}"/>
+                <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding undoCommand}"/>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,8,8,0">
+                <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding navigateToCommand}" CommandParameter="settings"/>
+                <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding navigateToCommand}" CommandParameter="help"/>
+                <Button Style="{StaticResource InGameButtonStyle}" Content="i" Command="{Binding navigateToCommand}" CommandParameter="about" FontFamily="Arial Narrow" FontSize="18"/>
+            </StackPanel>
+
+            <Grid x:Name="boardSpaces" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="1" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="1"  
 				                 ContainingPiece="{Binding game.board.spaces[0].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[0].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[0].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="2">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="2"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="2" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="2"
 				                 ContainingPiece="{Binding game.board.spaces[1].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[1].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[1].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="3">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="3"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="3" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="3"
 				                 ContainingPiece="{Binding game.board.spaces[2].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[2].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[2].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="4">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="4"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="4" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="4"
 				                 ContainingPiece="{Binding game.board.spaces[3].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[3].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[3].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="5">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="5"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="5" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="5"
 				                 ContainingPiece="{Binding game.board.spaces[4].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[4].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[4].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="6">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="6"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="6" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="6"
 				                 ContainingPiece="{Binding game.board.spaces[5].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[5].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[5].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="7">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="7"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="7" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="7"
 				                 ContainingPiece="{Binding game.board.spaces[6].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[6].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[6].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="8">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="8"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="8" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="8"
 				                 ContainingPiece="{Binding game.board.spaces[7].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[7].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[7].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="9">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="9"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="9" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="9"
 				                 ContainingPiece="{Binding game.board.spaces[8].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[8].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[8].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="10">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="10"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="10" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="10"
 				                 ContainingPiece="{Binding game.board.spaces[9].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[9].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[9].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="11">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="11"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="11" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="11"
 				                 ContainingPiece="{Binding game.board.spaces[10].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[10].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[10].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="12">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="12"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="12" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="12"
 				                 ContainingPiece="{Binding game.board.spaces[11].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[11].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[11].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="13">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="13"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="13" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="13"
 				                 ContainingPiece="{Binding game.board.spaces[12].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[12].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[12].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="14">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="14"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="14" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="14"
 				                 ContainingPiece="{Binding game.board.spaces[13].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[13].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[13].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="15">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="15"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="15" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="15"
 				                 ContainingPiece="{Binding game.board.spaces[14].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[14].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[14].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="5" Grid.Column="0" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="16">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="16"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="5" Grid.Column="0" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="16" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="16"
 				                 ContainingPiece="{Binding game.board.spaces[15].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[15].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[15].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="5" Grid.Column="1" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="17">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="17"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="5" Grid.Column="1" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="17" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="17"
 				                 ContainingPiece="{Binding game.board.spaces[16].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[16].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[16].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="5" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="18">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="18"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="5" Grid.Column="2" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="18" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="18"
 				                 ContainingPiece="{Binding game.board.spaces[17].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[17].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[17].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="5" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="19">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="19"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="5" Grid.Column="3" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="19" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="19"
 				                 ContainingPiece="{Binding game.board.spaces[18].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[18].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[18].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="5" Grid.Column="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="20">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="20"
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="5" Grid.Column="4" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="20" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="20"
 				                 ContainingPiece="{Binding game.board.spaces[19].containingPiece, Mode=TwoWay}"
 				                 IsBlackHole="{Binding game.board.spaces[19].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[19].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="5" Grid.Column="5" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="21">
-                <Button.Template>
-                    <ControlTemplate>
-                        <controls:BoardSpace SpaceId="21" 
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="5" Grid.Column="5" Style="{StaticResource SpaceButtonStyle}" Command="{Binding addPieceCommand}" CommandParameter="21" Margin="4,4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <controls:BoardSpace SpaceId="21" 
                                  ContainingPiece="{Binding game.board.spaces[20].containingPiece, Mode=TwoWay}"
                                  IsBlackHole="{Binding game.board.spaces[20].isBlackHole}"
                                  IsSurrounding="{Binding game.board.spaces[20].isSurrounding}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
 
-        <Grid Grid.Row="1">
-            <ListView ItemsSource="{Binding game.pieces}" Margin="0,0,0,4" 
+            <Grid Grid.Row="1">
+                <ListView ItemsSource="{Binding game.pieces}" Margin="0,0,0,4" 
 				ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}" CanDrag="{Binding DataContext.draggable, ElementName=root}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}" CanDrag="{Binding DataContext.draggable, ElementName=root}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
 
-        <Grid x:Name="FinishedPopup" Grid.Row="0" Grid.RowSpan="2" Background="LightGray" RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <CompositeTransform TranslateY="1274"/>
-            </Grid.RenderTransform>
+            <Grid x:Name="FinishedPopup" Grid.Row="0" Grid.RowSpan="2" Background="LightGray" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="1274"/>
+                </Grid.RenderTransform>
 
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Border BorderBrush="Black" BorderThickness="3" Background="White" Padding="8,8,8,8" CornerRadius="3">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="2*"/>
-                        </Grid.RowDefinitions>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border BorderBrush="Black" BorderThickness="3" Background="White" Padding="8,8,8,8" CornerRadius="3">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
 
-                        <Path Grid.Column="0" HorizontalAlignment="Center" Margin="0,-8,0,0" Fill="{Binding game.players[0].id, Converter={StaticResource playerColourConverter}}">
-                            <Path.Data>
-                                <PathGeometry>
-                                    <PathGeometry.Figures>
-                                        <PathFigure StartPoint="0,0">
-                                            <ArcSegment IsLargeArc="True" Size="25, 25" Point="100,0" SweepDirection="CounterClockwise" />
-                                        </PathFigure>
-                                    </PathGeometry.Figures>
-                                </PathGeometry>
-                            </Path.Data>
-                        </Path>
+                            <Path Grid.Column="0" HorizontalAlignment="Center" Margin="0,-8,0,0" Fill="{Binding game.players[0].id, Converter={StaticResource playerColourConverter}}">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigure StartPoint="0,0">
+                                                <ArcSegment IsLargeArc="True" Size="25, 25" Point="100,0" SweepDirection="CounterClockwise" />
+                                            </PathFigure>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
 
-                        <Path Grid.Column="1" HorizontalAlignment="Center" Margin="0,-8,0,0" Fill="{Binding game.players[1].id, Converter={StaticResource playerColourConverter}}">
-                            <Path.Data>
-                                <PathGeometry>
-                                    <PathGeometry.Figures>
-                                        <PathFigure StartPoint="0,0">
-                                            <ArcSegment IsLargeArc="True" Size="25, 25" Point="100,0" SweepDirection="CounterClockwise" />
-                                        </PathFigure>
-                                    </PathGeometry.Figures>
-                                </PathGeometry>
-                            </Path.Data>
-                        </Path>
+                            <Path Grid.Column="1" HorizontalAlignment="Center" Margin="0,-8,0,0" Fill="{Binding game.players[1].id, Converter={StaticResource playerColourConverter}}">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigure StartPoint="0,0">
+                                                <ArcSegment IsLargeArc="True" Size="25, 25" Point="100,0" SweepDirection="CounterClockwise" />
+                                            </PathFigure>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
 
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding game.players[0].score}" Style="{StaticResource PieceTextStyle}"/>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding game.players[1].score}" Style="{StaticResource PieceTextStyle}"/>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding game.players[0].score}" Style="{StaticResource PieceTextStyle}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding game.players[1].score}" Style="{StaticResource PieceTextStyle}"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="WINNER" Visibility="{Binding game.players[0].isWinner, Converter={StaticResource visibilityConverter}}"
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="WINNER" Visibility="{Binding game.players[0].isWinner, Converter={StaticResource visibilityConverter}}"
                                Style="{StaticResource WinnerTextStyle}"/>
-                        <TextBlock Grid.Column="1" Grid.Row="1" Text="WINNER" Visibility="{Binding game.players[1].isWinner, Converter={StaticResource visibilityConverter}}"
+                            <TextBlock Grid.Column="1" Grid.Row="1" Text="WINNER" Visibility="{Binding game.players[1].isWinner, Converter={StaticResource visibilityConverter}}"
                                Style="{StaticResource WinnerTextStyle}"/>
-                        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Text="DRAW" Visibility="{Binding game.isDraw, Converter={StaticResource visibilityConverter}}"
+                            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Text="DRAW" Visibility="{Binding game.isDraw, Converter={StaticResource visibilityConverter}}"
                                Style="{StaticResource WinnerTextStyle}"/>
 
-                        <Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1.5" Margin="0,0,0,8"/>
+                            <Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1.5" Margin="0,0,0,8"/>
 
-                        <ListView Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" ItemsSource="{Binding game.board.scoringPieces}" HorizontalAlignment="Center"
+                            <ListView Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" ItemsSource="{Binding game.board.scoringPieces}" HorizontalAlignment="Center"
                               ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
-                            <ListView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <ItemsWrapGrid Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}"/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Grid>
-                </Border>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <ItemsWrapGrid Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </Border>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,16,0,0">
-                    <Button Content="" Style="{StaticResource EndGameButtonStyle}" Visibility="Collapsed"/>
-                    <Button Content="" Style="{StaticResource EndGameButtonStyle}" Command="{Binding restartGameCommand}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,16,0,0">
+                        <Button Content="" Style="{StaticResource EndGameButtonStyle}" Visibility="Collapsed"/>
+                        <Button Content="" Style="{StaticResource EndGameButtonStyle}" Command="{Binding restartGameCommand}"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
 </Page> 

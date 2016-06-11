@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="BlackHole.UI.Views.AboutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlackHole.UI.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Background="White">
+
+    <Viewbox VerticalAlignment="Top">
+        <RelativePanel>
+            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                <StackPanel Margin="12,12,12,12">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,32">
+                        <Image Source="/Assets/Square150x150Logo.scale-200.png" Width="80" Margin="0,0,12,0"/>
+                        <StackPanel>
+                            <TextBlock Text="Black Hole" Style="{StaticResource TitleTextStyle}"/>
+                            <TextBlock Text="Version 0.9"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock TextAlignment="Center" Margin="0,0,0,20" Style="{StaticResource BaseTextStyle}" TextWrapping="Wrap" MaxWidth="400">
+                    Black Hole is a strategy game designed by <Hyperlink>David Bodycombe</Hyperlink> and broadcast on Youtube by <Hyperlink NavigateUri="www.youtube.com/tomscott">Tom Scott</Hyperlink>
+                    </TextBlock>
+                    <TextBlock Text="Thank you for downloading my app, I hope you find it fun and enjoyable. Please let me know what you think, or suggest future improvements, by clicking the buttons below."
+                           TextAlignment="Center" Margin="0,0,0,20" Style="{StaticResource BaseTextStyle}" TextWrapping="Wrap" MaxWidth="400"/>
+                    <Button Content="Rate and Review" Command="{Binding RateAndReviewCommand}" Margin="0,0,0,20" HorizontalAlignment="Center" Width="200"/>
+                    <Button Content="Send Feedback" Command="{Binding SendEmailCommand}" Margin="0,0,0,20" HorizontalAlignment="Center" Width="200"/>
+                    <TextBlock Text="This app is free and developed entirely in my own time. If you'd like to support my work on future apps and updates please consider a small donation." Style="{StaticResource BaseTextStyle}" TextAlignment="Center" Margin="0,10,0,20" TextWrapping="Wrap" MaxWidth="400"/>
+                    <Button Content="Donate" Command="{Binding DonateCommand}" HorizontalAlignment="Center" Width="200"/>
+                </StackPanel>
+            </ScrollViewer>
+        </RelativePanel>
+    </Viewbox>
+</Page>
