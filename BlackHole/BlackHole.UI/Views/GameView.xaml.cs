@@ -13,5 +13,15 @@ namespace BlackHole.UI.Views
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             NavigationCacheMode = NavigationCacheMode.Required;
         }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            if (e.Parameter != null && (bool)e.Parameter == true)
+            {
+                NavigationCacheMode = NavigationCacheMode.Disabled;
+            }
+
+            base.OnNavigatingFrom(e);
+        }
     }
 }
