@@ -1,10 +1,8 @@
 ﻿using BlackHole.UI.Views;
 using System;
-using System.Collections.Generic;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Store;
-using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -17,7 +15,6 @@ namespace BlackHole.UI
     /// </summary>
     sealed partial class Application : Windows.UI.Xaml.Application
     {
-        public readonly string canDragKey = "canDrag";
         public LicenseInformation licenseInfo;
 
         /// <summary>
@@ -59,11 +56,6 @@ namespace BlackHole.UI
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
-                }
-
-                if (!ApplicationData.Current.RoamingSettings.Values.ContainsKey(canDragKey))
-                {
-                    ApplicationData.Current.RoamingSettings.Values.Add(new KeyValuePair<string, object>(canDragKey, false));
                 }
 
                 // Place the frame in the current Window
@@ -117,9 +109,16 @@ namespace BlackHole.UI
 
         private void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
-            ((Frame)Window.Current.Content).GoBack();
-
             e.Handled = true;
+
+            if (!((Frame)Window.Current.Content).CanGoBack)
+            {
+                Exit();
+            }
+            else
+            {
+                ((Frame)Window.Current.Content).GoBack();
+            }
         }
     }
 }

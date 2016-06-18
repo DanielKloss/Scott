@@ -288,7 +288,7 @@
 				ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}" CanDrag="{Binding DataContext.draggable, ElementName=root}"/>
+                        <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

@@ -27,17 +27,6 @@ namespace BlackHole.UI.ViewModels
             }
         }
 
-        private bool _draggable;
-        public bool draggable
-        {
-            get { return _draggable; }
-            set
-            {
-                _draggable = value;
-                RaisePropertyChanged(nameof(draggable));
-            }
-        }
-
         private ICommand _restartGameCommand;
         public ICommand restartGameCommand
         {
@@ -107,7 +96,6 @@ namespace BlackHole.UI.ViewModels
         public GameViewModel()
         {
             game = new Game();
-            GetDraggable();
 
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -133,11 +121,6 @@ namespace BlackHole.UI.ViewModels
                     isFinished = true
                 };
             }
-        }
-
-        public void GetDraggable()
-        {
-            draggable = (bool)ApplicationData.Current.RoamingSettings.Values[((Application)Windows.UI.Xaml.Application.Current).canDragKey];
         }
 
         private void AddPiece(int boardSpace)

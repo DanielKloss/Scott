@@ -45,7 +45,7 @@
                     <Image Source="/Assets/Images/FullBoard.png" Width="300" Margin="0,0,0,12"/>
                 </Viewbox>
                 <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="500">
-                    <TextBlock Text="Whoever has the least numbers pulled in is the winner!" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="300" Margin="0,0,0,12"/>
+                    <TextBlock Text="Whoever has the smallest total number pulled in is the winner!" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="300" Margin="0,0,0,12"/>
                 </Viewbox>
                 <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="300">
                     <Image Source="/Assets/Images/FinalScore.png" Width="300" Margin="0,0,0,12"/>
