@@ -1,7 +1,5 @@
 ﻿using BlackHole.UI.ViewModels;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -32,16 +30,6 @@ namespace BlackHole.UI.Views
             ((GameViewModel)DataContext).GetDraggable();
 
             base.OnNavigatedTo(e);
-        }
-
-        private void page_DragLeave(object sender, DragEventArgs e)
-        {
-            e.AcceptedOperation = DataPackageOperation.None;
-        }
-
-        private void page_DragOver(object sender, DragEventArgs e)
-        {
-            e.DragUIOverride.IsGlyphVisible = false;
         }
     }
 }

@@ -1,8 +1,5 @@
-﻿using BlackHole.UI.Helpers;
-using BlackHole.UI.Models;
+﻿using BlackHole.UI.Models;
 using BlackHole.UI.ViewModels;
-using System;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -41,33 +38,6 @@ namespace BlackHole.UI.Views.Controls
         {
             get { return (bool)GetValue(isSurroundingProperty); }
             set { SetValue(isSurroundingProperty, value); }
-        }
-
-        private async void control_Drop(object sender, DragEventArgs e)
-        {
-            if (e.DataView.Contains(StandardDataFormats.Text))
-            {
-                var piece = await e.DataView.GetTextAsync();
-                var pieceComponents = piece.Split(',');
-
-                ContainingPiece = new Piece();
-                ContainingPiece.player = Convert.ToInt32(pieceComponents[0]);
-                ContainingPiece.pieceValue = Convert.ToInt32(pieceComponents[1]);
-
-                ((GameViewModel)DataContext).StartNextTurn(ContainingPiece, Convert.ToInt32(((BoardSpace)sender).SpaceId));
-            }
-
-            e.Handled = true;
-        }
-
-        private void control_DragOver(object sender, DragEventArgs e)
-        {
-            if (e.DataView.Contains(StandardDataFormats.Text))
-            {
-                e.DragUIOverride.IsCaptionVisible = false;
-                e.DragUIOverride.IsGlyphVisible = false;
-                e.AcceptedOperation = DataPackageOperation.Move;
-            }
         }
 
         private void Storyboard_Completed(object sender, object e)

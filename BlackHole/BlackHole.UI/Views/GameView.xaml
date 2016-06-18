@@ -11,47 +11,46 @@
     xmlns:Media="using:Microsoft.Xaml.Interactions.Media"
     x:Name="root"
     x:Class="BlackHole.UI.Views.GameView"
-    mc:Ignorable="d" 
-    AllowDrop="True" DragOver="page_DragOver" DragLeave="page_DragLeave" Background="White">
+    mc:Ignorable="d" Background="White">
 
     <Page.DataContext>
         <viewModels:GameViewModel/>
     </Page.DataContext>
 
-    <Viewbox>
-        <Grid Background="Transparent">
-            <Interactivity:Interaction.Behaviors>
-                <Core:DataTriggerBehavior Binding="{Binding game.isFinished}" Value="True">
-                    <Media:ControlStoryboardAction>
-                        <Media:ControlStoryboardAction.Storyboard>
-                            <Storyboard Storyboard.TargetName="FinishedPopup" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
-                                <DoubleAnimation From="1274" To="0" Duration="0:0:1">
-                                    <DoubleAnimation.EasingFunction>
-                                        <QuadraticEase EasingMode="EaseOut"/>
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                            </Storyboard>
-                        </Media:ControlStoryboardAction.Storyboard>
-                    </Media:ControlStoryboardAction>
-                </Core:DataTriggerBehavior>
-            </Interactivity:Interaction.Behaviors>
+    <Grid Background="Transparent">
+        <Interactivity:Interaction.Behaviors>
+            <Core:DataTriggerBehavior Binding="{Binding game.isFinished}" Value="True">
+                <Media:ControlStoryboardAction>
+                    <Media:ControlStoryboardAction.Storyboard>
+                        <Storyboard Storyboard.TargetName="FinishedPopup" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                            <DoubleAnimation From="1274" To="0" Duration="0:0:1">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </Media:ControlStoryboardAction.Storyboard>
+                </Media:ControlStoryboardAction>
+            </Core:DataTriggerBehavior>
+        </Interactivity:Interaction.Behaviors>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
 
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,8,0,0">
-                <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding restartGameCommand}"/>
-                <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding undoCommand}"/>
-            </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,8,0,0">
+            <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding navigateToCommand}" CommandParameter="help"/>
+            <Button Style="{StaticResource InGameButtonStyle}" Content="i" Command="{Binding navigateToCommand}" CommandParameter="about" FontFamily="Arial Narrow" FontSize="32"/>
+            <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding restartGameCommand}"/>
+            <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding undoCommand}"/>
+        </StackPanel>
 
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,8,8,0">
-                <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding navigateToCommand}" CommandParameter="settings"/>
-                <Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding navigateToCommand}" CommandParameter="help"/>
-                <Button Style="{StaticResource InGameButtonStyle}" Content="i" Command="{Binding navigateToCommand}" CommandParameter="about" FontFamily="Arial Narrow" FontSize="18"/>
-            </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,8,8,0">
+            <!--<Button Style="{StaticResource InGameButtonStyle}" Content="" Command="{Binding navigateToCommand}" CommandParameter="settings"/>-->
+        </StackPanel>
 
+        <Viewbox>
             <Grid x:Name="boardSpaces" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -282,23 +281,25 @@
                     </Button.Template>
                 </Button>
             </Grid>
+        </Viewbox>
 
-            <Grid Grid.Row="1">
-                <ListView ItemsSource="{Binding game.pieces}" Margin="0,0,0,4" 
+        <Grid Grid.Row="1">
+            <ListView ItemsSource="{Binding game.pieces}" Margin="0,0,0,4" 
 				ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}" CanDrag="{Binding DataContext.draggable, ElementName=root}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:PlayerPiece Value="{Binding pieceValue}" Player="{Binding player}" CanDrag="{Binding DataContext.draggable, ElementName=root}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
 
-            <Grid x:Name="FinishedPopup" Grid.Row="0" Grid.RowSpan="2" Background="LightGray" RenderTransformOrigin="0.5,0.5">
-                <Grid.RenderTransform>
-                    <CompositeTransform TranslateY="1274"/>
-                </Grid.RenderTransform>
+        <Grid x:Name="FinishedPopup" Grid.Row="0" Grid.RowSpan="2" Background="LightGray" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <CompositeTransform TranslateY="1274"/>
+            </Grid.RenderTransform>
 
+            <Viewbox Margin="32,32,32,0">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Border BorderBrush="Black" BorderThickness="3" Background="White" Padding="8,8,8,8" CornerRadius="3">
                         <Grid>
@@ -350,7 +351,7 @@
                             <Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1.5" Margin="0,0,0,8"/>
 
                             <ListView Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" ItemsSource="{Binding game.board.scoringPieces}" HorizontalAlignment="Center"
-                              ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
+                                      ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource NoBorderListViewStyle}">
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <ItemsWrapGrid Orientation="Horizontal"/>
@@ -370,7 +371,7 @@
                         <Button Content="" Style="{StaticResource EndGameButtonStyle}" Command="{Binding restartGameCommand}"/>
                     </StackPanel>
                 </StackPanel>
-            </Grid>
+            </Viewbox>
         </Grid>
-    </Viewbox>
+    </Grid>
 </Page> 

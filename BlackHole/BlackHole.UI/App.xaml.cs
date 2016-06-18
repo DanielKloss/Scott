@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Store;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -17,6 +18,7 @@ namespace BlackHole.UI
     sealed partial class Application : Windows.UI.Xaml.Application
     {
         public readonly string canDragKey = "canDrag";
+        public LicenseInformation licenseInfo;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -24,6 +26,8 @@ namespace BlackHole.UI
         /// </summary>
         public Application()
         {
+            //licenseInfo = CurrentApp.LicenseInformation;
+
             InitializeComponent();
             Suspending += OnSuspending;
         }

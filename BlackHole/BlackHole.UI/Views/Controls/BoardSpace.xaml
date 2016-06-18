@@ -9,10 +9,7 @@
     xmlns:Media="using:Microsoft.Xaml.Interactions.Media"
     x:Name="control"
     x:Class="BlackHole.UI.Views.Controls.BoardSpace"
-    mc:Ignorable="d"
-    AllowDrop="True"
-    DragOver="control_DragOver"
-    Drop="control_Drop">
+    mc:Ignorable="d">
 
     <Grid>
         <Grid>
@@ -20,10 +17,8 @@
                 <Core:DataTriggerBehavior Binding="{Binding IsBlackHole, ElementName=control}" Value="True">
                     <Media:ControlStoryboardAction>
                         <Media:ControlStoryboardAction.Storyboard>
-                            <Storyboard Storyboard.TargetName="boardPiece" Storyboard.TargetProperty="(Fill).(SolidColorBrush.Color)">
-                                <ColorAnimationUsingKeyFrames BeginTime="0:0:0">
-                                    <EasingColorKeyFrame KeyTime="0:0:1" Value="Black"/>
-                                </ColorAnimationUsingKeyFrames>
+                            <Storyboard Storyboard.TargetName="blackHole" Storyboard.TargetProperty="(Fill).(SolidColorBrush.Color)">
+                                <ColorAnimation Duration="0:0:1" From="Transparent" To="Black"/>
                             </Storyboard>
                         </Media:ControlStoryboardAction.Storyboard>
                     </Media:ControlStoryboardAction>
@@ -75,6 +70,6 @@
             </Ellipse>
             <TextBlock x:Name="boardPieceText" Text="{Binding ContainingPiece.pieceValue, ElementName=control, Mode=TwoWay}" Style="{StaticResource PieceTextStyle}"/>
         </Grid>
-        <Ellipse Height="50" Width="50" Stroke="Black" StrokeThickness="3"/>
+        <Ellipse x:Name="blackHole" Height="50" Width="50" Stroke="Black" StrokeThickness="3" Fill="Transparent"/>
     </Grid>
 </UserControl>

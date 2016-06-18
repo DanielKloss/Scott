@@ -6,9 +6,7 @@
     xmlns:local="using:BlackHole.UI.Views.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    DragStarting="control_DragStarting"
-    DropCompleted="control_DropCompleted">
+    mc:Ignorable="d">
 
     <Grid>
         <Ellipse Height="35" Width="35" Fill="{Binding Player, ElementName=control, Converter={StaticResource playerColourConverter}}"/>

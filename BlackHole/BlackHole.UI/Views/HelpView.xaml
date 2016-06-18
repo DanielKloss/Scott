@@ -7,26 +7,51 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="White">
 
-    <Viewbox VerticalAlignment="Top">
-        <RelativePanel>
-            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-                <StackPanel Margin="12,12,12,12">
-                    <TextBlock Text="How To Play" Style="{StaticResource TitleTextStyle}"/>
-                    <TextBlock Text="Black Hole: Number War is a strategic game for two players" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="400" Margin="0,0,0,12"/>
-                    <TextBlock Text="It is played on a triangular board with 21 spaces" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="400" Margin="0,0,0,12"/>
-                    <Image Source="/Assets/Images/EmptyBoard.png" Height="100" Margin="0,0,0,12"/>
-                    <TextBlock Text="Each player has 10 numbered pieces" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="400" Margin="0,0,0,12"/>
-                    <TextBlock Text="Players take it in turns playing pieces in ascending order to the board" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="400" Margin="0,0,0,12"/>
-                    <Image Source="/Assets/Images/AllPieces.png" Height="100" Margin="0,0,0,12"/>
-                    <TextBlock Text="At the end of the game there is one space that doesn't contain a piece" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="400" Margin="0,0,0,12"/>
-                    <TextBlock Text="This space is the Black Hole" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="400" Margin="0,0,0,12"/>
-                    <TextBlock Text="The black hole sucks in all surrounding pieces" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="400" Margin="0,0,0,12"/>
-                    <Image Source="/Assets/Images/FullBoard.png" Height="100" Margin="0,0,0,12"/>
-                    <TextBlock Text="Whoever has the least numbers pulled in is the winner!" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="400" Margin="0,0,0,12"/>
-                    <Image Source="/Assets/Images/FinalScore.png" Height="100" Margin="0,0,0,12"/>
-                </StackPanel>
-            </ScrollViewer>
-        </RelativePanel>
-    </Viewbox>
+
+    <RelativePanel>
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+            <StackPanel Margin="12,12,12,12">
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="500">
+                    <TextBlock Text="How To Play" Style="{StaticResource TitleTextStyle}" MaxWidth="300"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="500">
+                    <TextBlock Text="Black Hole: Number War is a strategic game for two players" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="500">
+                    <TextBlock Text="It is played on a triangular board with 21 spaces" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="300">
+                    <Image Source="/Assets/Images/EmptyBoard.png" Width="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="500">
+                    <TextBlock Text="Each player has 10 numbered pieces" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="500">
+                    <TextBlock Text="Players take it in turns playing pieces in ascending order to the board" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="300">
+                    <Image Source="/Assets/Images/AllPieces.png" Width="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="500">
+                    <TextBlock Text="At the end of the game there is one space that doesn't contain a piece" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="500">
+                    <TextBlock Text="This space is the Black Hole" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="500">
+                    <TextBlock Text="The black hole sucks in all surrounding pieces" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="300">
+                    <Image Source="/Assets/Images/FullBoard.png" Width="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="500">
+                    <TextBlock Text="Whoever has the least numbers pulled in is the winner!" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource BaseTextStyle}" MaxWidth="300" Margin="0,0,0,12"/>
+                </Viewbox>
+                <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" MaxWidth="300">
+                    <Image Source="/Assets/Images/FinalScore.png" Width="300" Margin="0,0,0,12"/>
+                </Viewbox>
+            </StackPanel>
+        </ScrollViewer>
+    </RelativePanel>
 
 </Page>
