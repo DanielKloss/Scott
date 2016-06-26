@@ -1,7 +1,12 @@
 using BlackHole.UI.Helpers;
 using System;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Store;
+using Windows.Networking.Connectivity;
+using Windows.Storage;
 using Windows.System;
 using Windows.UI.Popups;
 
@@ -82,15 +87,16 @@ namespace BlackHole.UI.ViewModels
 
         private bool HasDonated()
         {
-            //if (((Application)Application.Current).licenseInfo.ProductLicenses["Donation"].IsActive)
-            //{
-            //    donated = true;
-            //}
-            //else
-            //{
-            //    donated = false;
-            //}
-            return false;
+            if (((Application)Application.Current).licenseInfo.ProductLicenses["Donation"].IsActive)
+            {
+                donated = true;
+            }
+            else
+            {
+                donated = false;
+            }
+
+            return donated;
         }
 
         private bool CanCommand()
@@ -124,43 +130,43 @@ namespace BlackHole.UI.ViewModels
             //await CurrentAppSimulator.ReloadSimulatorAsync(file);
 
 
-        //    ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
-        //    if (connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess)
-        //    {
-        //        try
-        //        {
-        //            working = true;
-        //            await CurrentApp.RequestProductPurchaseAsync("Donation");
-        //        }
-        //        catch (ArgumentException)
-        //        {
-        //            await PurchaseError();
-        //        }
-        //        catch (COMException)
-        //        {
-        //            await PurchaseError();
-        //        }
-        //        catch (OutOfMemoryException)
-        //        {
-        //            await PurchaseError();
-        //        }
-        //        finally
-        //        {
-        //            HasDonated();
-        //            working = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        _dialog = new MessageDialog("The Windows Store couldn't be reached, please check your internet connection and try again", "Connection Error");
-        //        await _dialog.ShowAsync();
-        //    }
-        //}
+            ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
+            if (connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess)
+            {
+                try
+                {
+                    working = true;
+                    await CurrentApp.RequestProductPurchaseAsync("Donation");
+                }
+                catch (ArgumentException)
+                {
+                    await PurchaseError();
+                }
+                catch (COMException)
+                {
+                    await PurchaseError();
+                }
+                catch (OutOfMemoryException)
+                {
+                    await PurchaseError();
+                }
+                finally
+                {
+                    HasDonated();
+                    working = false;
+                }
+            }
+            else
+            {
+                _dialog = new MessageDialog("The Windows Store couldn't be reached, please check your internet connection and try again", "Connection Error");
+                await _dialog.ShowAsync();
+            }
+        }
 
-        //private async Task PurchaseError()
-        //{
-        //    _dialog = new MessageDialog("Something went wrong with your donation, please check your internet connection and try again", "Error");
-        //    await _dialog.ShowAsync();
+        private async Task PurchaseError()
+        {
+            _dialog = new MessageDialog("Something went wrong with your donation, please check your internet connection and try again", "Error");
+            await _dialog.ShowAsync();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace BlackHole.UI
         /// </summary>
         public Application()
         {
-            //licenseInfo = CurrentApp.LicenseInformation;
+            licenseInfo = CurrentApp.LicenseInformation;
 
             InitializeComponent();
             Suspending += OnSuspending;
@@ -75,11 +75,6 @@ namespace BlackHole.UI
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
-
-                //ApplicationViewTitleBar formattableTitleBar = ApplicationView.GetForCurrentView().TitleBar;
-                //formattableTitleBar.ButtonBackgroundColor = Colors.Transparent;
-                //CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
-                //coreTitleBar.ExtendViewIntoTitleBar = true;
             }
         }
 
