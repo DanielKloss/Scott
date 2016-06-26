@@ -1,1 +1,1 @@
-D:\Dan\Documents\dev\Windows10\Scott\BlackHole\BlackHole.UI\AppPackages\BlackHole.UI_0.9.2.0\BlackHole.UI_0.9.2.0_x86_x64_arm.appxbundle
+D:\Dan\Documents\dev\Windows10\Scott\BlackHole\BlackHole.UI\AppPackages\BlackHole.UI_1.0.5.0\BlackHole.UI_1.0.5.0_x86_x64_arm.appxbundle

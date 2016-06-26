@@ -24,7 +24,7 @@
                             <TextBlock Text="Black Hole" Style="{StaticResource TitleTextStyle}" MaxWidth="180"/>
                         </Viewbox>
                         <Viewbox StretchDirection="UpOnly" VerticalAlignment="Top" HorizontalAlignment="Left" MaxWidth="80">
-                            <TextBlock Text="Version 0.9" MaxWidth="80"/>
+                            <TextBlock Text="Version 1.0" MaxWidth="80"/>
                         </Viewbox>
                     </StackPanel>
                 </StackPanel>
